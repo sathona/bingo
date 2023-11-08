@@ -43,7 +43,7 @@
     $count = 0;
     $('.column').empty();
     $numList = window.location.search.split(";");
-    $numList[0] = $numList[0].substring(1);
+    if($numList[0] !== "") $numList[0] = $numList[0].substring(1);
     const fillList = "a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x".split(";");
     while($numList.length < 24){
         $numList.push(fillList[$numList.length]);
