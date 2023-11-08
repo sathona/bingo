@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bingo Sheet</title>
+    <style>
+        .clear { width: 100%; clear: both; }
+        .card { float: left; width: 500px; height: auto; background-color: #446444; border-radius: 10px; padding: 10px; }
+        button { float: left; }
+        .headers > div { float: left; width: 100px; text-align: center; }
+        .headers > div span { font-size: 42px; color: #fff; font-weight: bold; }
+        .column { float: left; width: 100px; text-align: center; }
+        .number { padding: 20px 0; border: 1px solid #000; background-color: #fff; }
+        .number span { color: #000; font-size: 32px; }
+        .number span:hover { text-shadow: 0 0 5px rgba(0,0,0,0.5); }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="clear"></div>
+<div class="card">
+    <div class="headers">
+        <div><span>B</span></div>
+        <div><span>I</span></div>
+        <div><span>N</span></div>
+        <div><span>G</span></div>
+        <div><span>O</span></div>
+    </div>
+    <div class="column 1">
+    </div>
+    <div class="column 2">
+    </div>
+    <div class="column 3">
+    </div>
+    <div class="column 4">
+    </div>
+    <div class="column 5">
+    </div>
+</div>
+<div class="temp"></div>
+
+<script>
+    $count = 0;
+    $('.column').empty();
+    $numList = window.location.search.split(";");
+    $numList[0] = $numList[0].substring(1);
+    const fillList = "a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x".split(";");
+    while($numList.length < 24){
+        $numList.push(fillList[$numList.length]);
+    }
+    $numList = [...$numList.slice(0,12), "FREE", ...$numList.slice(12)];
+    for ($x = 1; $x <= 5; $x++) {
+        for ($y = 1; $y <= 5; $y++) {
+            $('.' + $y).append("<div class='number col-" + $count + "'><span>" + $numList[$count] + "</span></div>");
+            $count++;
+        }
+    }
+    $(".col-12").html("<span>FREE</span>");
+
+    $('.number').click(function() {
+        console.log($(this).css("background-color"));
+        let color = $(this).css("background-color") === "rgb(255, 255, 255)" ? "#0f0" : "#fff";
+        console.log(color);
+        $(this).css("background-color",color);
+    });
+
+</script>
+</body>
+</html>
