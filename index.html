@@ -49,6 +49,7 @@
         $numList.push(fillList[$numList.length]);
     }
     $numList = [...$numList.slice(0,12), "FREE", ...$numList.slice(12)];
+    $numList.forEach(x => x = x.replaceAll("%20", " "));
     for ($x = 1; $x <= 5; $x++) {
         for ($y = 1; $y <= 5; $y++) {
             $('.' + $y).append("<div class='number col-" + $count + "'><span>" + $numList[$count] + "</span></div>");
